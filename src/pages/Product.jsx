@@ -8,6 +8,9 @@ export const Product = () => {
   const [products, setProducts] = useState([]);
   const { addToCart } = useContext(CartContext);
 
+
+
+
   // react toastify
   const notify = () =>
     toast.success("Added to Cart", {
@@ -17,12 +20,12 @@ export const Product = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
+        const response = await fetch("https://dummyjson.com/products?limit=100");
         if (!response.ok) {
           throw new Error(`HTTPs Error: ${response.status}`);
         }
         const data = await response.json();
-        setProducts(data);
+        setProducts(data.products);
       } catch (error) {
         console.error("Error fetching products", error.message);
       }
@@ -40,7 +43,7 @@ export const Product = () => {
 
   return (
     <div className="px-5 md:px-16 lg:px-36">
-      <h2 className="text-center py-10 font-bold text-xl">All Products</h2>
+      <h2 className="text-center py-36 font-bold text-xl">All Products</h2>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
         {products.map((product) => {
           return (
@@ -49,7 +52,7 @@ export const Product = () => {
               className="border rounded-xl p-2 flex flex-col justify-end"
             >
               <img
-                src={product.image}
+                src={product.thumbnail}
                 alt=""
                 className="h-[200px] object-contain"
               />

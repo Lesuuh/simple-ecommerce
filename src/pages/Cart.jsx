@@ -15,7 +15,7 @@ export const Cart = () => {
           <div className="flex justify-between items-center" key={item.id}>
             <div className="flex gap-4">
               <img
-                src={item.image}
+                src={item.thumbnail}
                 alt={item.title}
                 className="rounded-md h-24"
               />
