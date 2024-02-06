@@ -1,10 +1,21 @@
 import { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
+import { CartContext } from "../contexts/Cart";
+import { useContext } from "react";
+import { toast } from "react-toastify";
 
 export const TopProducts = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { addToCart } = useContext(CartContext);
+
+  // implementing the toast notification
+  const notify = () =>
+    toast.success("Added to Cart", {
+      position: "top-left",
+    });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,7 +116,13 @@ export const TopProducts = () => {
                     {truncateString(product.title, 50)}
                   </h3>
                   <h4>${product.price}</h4>
-                  <button className="text-white rounded-xl bg-gray-950 px-2 py-1 border-0 outline-none">
+                  <button
+                    onClick={() => {
+                      addToCart(product);
+                      notify();
+                    }}
+                    className="text-white rounded-xl bg-gray-950 px-2 py-1 border-0 outline-none"
+                  >
                     Add to Cart
                   </button>
                 </div>
