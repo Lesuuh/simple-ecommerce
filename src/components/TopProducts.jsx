@@ -117,7 +117,7 @@ export const TopProducts = () => {
 
   return (
     <div className="px-5 md:px-16 lg:px-36">
-      <h2>Top Products</h2>
+      <h2 className="py-5">Top Products</h2>
       <div className="flex gap-10 flex-col">
         {categories.map((category) => renderProductSection(category))}
       </div>

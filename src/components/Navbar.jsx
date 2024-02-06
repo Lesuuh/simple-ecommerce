@@ -26,12 +26,14 @@ export const Navbar = () => {
             <li>Register</li>
           </Link>
         </div>
-        <li>
+
+        <li className="md:hidden">
           <RxHamburgerMenu />
         </li>
 
-        <li>
+        <li className="flex items-center">
           <FaOpencart />
+          <span>0</span>
         </li>
       </ul>
     </div>
